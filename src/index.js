@@ -6,11 +6,12 @@ import actions from './store/actions';
 import gameSize from './utils/gameSize';
 import game from './game';
 import GameBoard from './GameBoard';
+import Example from './components/Example';
 import './index.css';
 
 const store = configureStore();
-const set = type => payload => store.dispatch({type, payload});
-const clear = type => () => store.dispatch({type});
+const set = type => payload => store.dispatch({ type, payload });
+const clear = type => () => store.dispatch({ type });
 game(
   gameSize,
   set(actions.SET_SNAKE),
@@ -22,7 +23,10 @@ game(
 
 ReactDOM.render(
   <Provider store={store}>
-    <GameBoard gameSize={gameSize}/>
+    <div className="wrapper">
+      <GameBoard gameSize={gameSize}/>
+      <Example/>
+    </div>
   </Provider>,
   document.getElementById('root'),
 );
